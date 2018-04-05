@@ -81,7 +81,10 @@ def search_train(data, my_hour, args):
     return False
 
 def main():
-    locale.setlocale(locale.LC_ALL, 'fr_FR')
+    try:
+        locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
+    except:
+        locale.setlocale(locale.LC_ALL, 'fr_FR')
 
     start_date = datetime.now()
     end_date = start_date + timedelta(days=31)
