@@ -8,6 +8,7 @@ from datetime import timedelta, datetime
 import sys
 import time
 import locale
+import os
 
 toSend = "Trains disponibles ce mois-ci : \n\n"
 
@@ -39,7 +40,7 @@ def prepare_url(args, searchDate):
     return url
 
 def send_email(args, message):
-    credential = json.load(open("./secret.json"))
+    credential = json.load(open(os.path.join(os.path.dirname(__file__), "secret.json")))
     fromaddr = credential["EMAIL"]["my_email"]
     toaddrs = credential["EMAIL"]["toaddrs"]
     subject = "TGV MAX [" + args.origine + " -> " + args.destination +  "]"
