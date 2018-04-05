@@ -7,6 +7,7 @@ import argparse
 from datetime import timedelta, datetime
 import sys
 import time
+import locale
 
 toSend = "Trains disponibles ce mois-ci : \n\n"
 
@@ -56,7 +57,7 @@ def send_email(args, message):
 def send_alert(data, args):
     global toSend
 
-    message = "  - " + data["fields"]["date"] + " \t" +\
+    message = "  - " + datetime.strptime(data["fields"]["date"], "%Y-%m-%d").strftime("%A %d %B") + " \t" +\
     data["fields"]["heure_depart"] +\
     " \t>>\t " + data["fields"]["heure_arrivee"] +\
     "\n"
@@ -80,6 +81,8 @@ def search_train(data, my_hour, args):
     return False
 
 def main():
+    locale.setlocale(locale.LC_ALL, 'fr_FR')
+
     start_date = datetime.now()
     end_date = start_date + timedelta(days=31)
 
