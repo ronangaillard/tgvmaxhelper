@@ -10,7 +10,7 @@ import time
 import locale
 import os
 
-toSend = "Trains disponibles ce mois-ci : \n\n"
+toSend = ""
 
 def daterange(start_date, end_date):
     for n in range(int ((end_date - start_date).days)):
@@ -82,6 +82,8 @@ def search_train(data, my_hour, args):
     return False
 
 def main():
+    global toSend
+    
     try:
         locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
     except:
@@ -102,7 +104,9 @@ def main():
         if search_train(data, hour, args) != True:
             print "Aucun train disponible ..."
 
-    send_email(args, toSend)
+    if toSend != "":
+        toSend = "Trains disponibles ce mois-ci : \n\n" + toSend
+        send_email(args, toSend)
 
 if __name__ == '__main__':
     main()
