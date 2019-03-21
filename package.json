@@ -1,0 +1,23 @@
+{
+  "name": "tgvmax",
+  "version": "1.0.0",
+  "description": "`npm install`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronangaillard/tgvmaxhelper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronangaillard/tgvmaxhelper/issues"
+  },
+  "homepage": "https://github.com/ronangaillard/tgvmaxhelper#readme",
+  "dependencies": {
+    "opn": "^5.5.0",
+    "request": "^2.88.0"
+  }
+}
