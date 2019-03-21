@@ -1,0 +1,23 @@
+{
+    "travels": [
+        {
+            "city_from": "PARIS (intramuros)",
+            "city_to": "ST MALO"
+        },
+
+        {
+            "city_from": "ST MALO",
+            "city_to": "PARIS (intramuros)"
+        },
+
+        {
+            "city_from": "PARIS (intramuros)",
+            "city_to": "LYON (gares intramuros)"
+        },
+
+        {
+            "city_from": "LYON (gares intramuros)",
+            "city_to": "PARIS (intramuros)"
+        }
+    ]
+}
