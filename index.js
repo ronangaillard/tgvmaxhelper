@@ -1,5 +1,8 @@
 const request = require('request');
 const fs = require('fs');
+const opn = require('opn');
+
+travelData = [];
 
 function getUrl(city_from, city_to)
 {
@@ -10,9 +13,18 @@ function getUrl(city_from, city_to)
 
 function printInfo(travels, i)
 {
-    if (i >= travels.length)
+    if (i >= travels.length) {
+        fs.writeFile("front/data.js", "var travelData = " + JSON.stringify(travelData) + ";", function (err) {
+            if (err) {
+                return console.log(err);
+            }
+
+            console.log("The file was saved!");
+
+            opn('./front/locales.html');
+        }); 
         return;
-    
+    }
    
     var travel = travels[i];
     console.log("Looking for travel from " + travel.city_from + " to " + travel.city_to);
@@ -20,6 +32,11 @@ function printInfo(travels, i)
         if (body) {
             var result = JSON.parse(body);
             result.records.forEach(function (element) {
+                travelData.push({
+                    title: travel.city_from + " to " + travel.city_to,
+                    start: element.fields.date + "T" + element.fields.heure_depart, 
+                    end: element.fields.date + "T" + element.fields.heure_arrivee 
+                });
                 console.log(element.fields.date + " : " + element.fields.heure_depart + " -> " + element.fields.heure_arrivee);
             });
             printInfo(travels, ++i);
